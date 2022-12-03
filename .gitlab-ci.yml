@@ -17,7 +17,7 @@ build web:
   stage: build
   image: musicscience37/pipenv:jammy
   needs: []
-  scripts:
+  script:
     - mkdir -p .venv
     - pipenv sync
     - pipenv run python3 ./tool.py build -l ja
