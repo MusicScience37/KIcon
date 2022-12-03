@@ -14,8 +14,8 @@ license_scanning:
 
 pages:
   stage: deploy
-  #only:
-  #  - master
+  only:
+    - main
   needs: []
   script:
     - mkdir public
