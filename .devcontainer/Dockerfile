@@ -2,7 +2,8 @@ FROM musicscience37/pipenv:jammy
 
 ENV PATH="${PATH}:/root/.local/bin"
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+    # Option "--no-install-recommends " makes imagemagick unusable.
+    apt-get install -y \
     git \
     git-lfs \
     openssh-client \
