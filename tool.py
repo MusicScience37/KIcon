@@ -33,6 +33,7 @@ ICON_SIZES = [
 IMAGE_SIZES = ICON_SIZES + [
     24,
     80,
+    128,
     152,
     180,
     512,

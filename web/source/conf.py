@@ -15,6 +15,7 @@ ICON_SIZES = [
 IMAGE_SIZES = ICON_SIZES + [
     24,
     80,
+    128,
     152,
     180,
     512,
@@ -45,13 +46,17 @@ jinja_contexts = {
     }
 }
 
+# -- Options for internationalization ----------------------------------------
+
+language = "ja"
+
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 # setting of opengraph
 # https://pypi.org/project/sphinxext-opengraph/
 extensions += ["sphinxext.opengraph"]
-ogp_site_url = "https://kicon.musicscience37.com/en/"
+ogp_site_url = f"https://kicon.musicscience37.com/{language}/"
 ogp_site_name = "KIcon"
 ogp_image = "https://kicon.musicscience37.com/KIcon128white.png"
 
@@ -67,7 +72,3 @@ html_theme_options = {
     "navigation_depth": -1,
     "style_nav_header_background": "#B24700",
 }
-
-# -- Options for internationalization ----------------------------------------
-
-language = "ja"
