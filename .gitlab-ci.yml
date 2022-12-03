@@ -18,7 +18,8 @@ pages:
   #  - master
   needs: []
   script:
-    - mv outputs public
+    - mkdir public
+    - mv outputs/* public/
   artifacts:
     paths:
       - public
