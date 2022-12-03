@@ -5,10 +5,17 @@ verify_ssl = true
 
 [packages]
 click = "*"
+sphinx = "*"
+sphinx-rtd-theme = "*"
+sphinxext-opengraph = "*"
+sphinx-jinja = "*"
 
 [dev-packages]
 black = "*"
 isort = "*"
+doc8 = "*"
+sphinx-autobuild = "*"
+sphinx-intl = "*"
 
 [requires]
 python_version = "3.10"

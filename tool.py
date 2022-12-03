@@ -7,11 +7,17 @@ import typing
 
 import click
 
+THIS_DIR = pathlib.Path(__file__).absolute().parent
+
 
 @click.group()
 def cli():
     pass
 
+
+# #############################################################################
+# Conversion of images
+# #############################################################################
 
 IMAGE_DENSITY = 1024
 
@@ -27,6 +33,7 @@ ICON_SIZES = [
 IMAGE_SIZES = ICON_SIZES + [
     24,
     80,
+    128,
     152,
     180,
     512,
@@ -35,7 +42,6 @@ IMAGE_SIZES = ICON_SIZES + [
 IMAGE_SIZES.sort()
 
 
-THIS_DIR = pathlib.Path(__file__).absolute().parent
 OUTPUTS_DIR = THIS_DIR / "outputs"
 
 
@@ -102,6 +108,121 @@ def convert():
     _convert_png()
     _convert_jpg()
     _convert_icon()
+
+
+# #############################################################################
+# Web
+# #############################################################################
+
+
+WEB_DIR = THIS_DIR / "web"
+
+SUPPORTED_LANGUAGES = ["ja", "en"]
+
+
+@cli.command()
+def update():
+    """Update translation files."""
+
+    subprocess.run(
+        [
+            "sphinx-build",
+            "-M",
+            "gettext",
+            "source",
+            "build",
+        ],
+        check=True,
+        cwd=str(WEB_DIR),
+    )
+    subprocess.run(
+        [
+            "sphinx-intl",
+            "update",
+            "-p",
+            "../build/gettext",
+            "-l",
+            "en",
+        ],
+        check=True,
+        cwd=str(WEB_DIR / "source"),
+    )
+
+
+@cli.command()
+@click.option("-p", "--port", default=2496, help="Port of the HTTP server.", type=int)
+def auto(port: int):
+    """Automatic build and view."""
+
+    subprocess.run(
+        [
+            "sphinx-autobuild",
+            "source",
+            "build/auto_build",
+            "--host",
+            "0",
+            "--port",
+            str(port),
+        ],
+        check=False,
+        cwd=str(WEB_DIR),
+    )
+
+
+@cli.command()
+@click.option(
+    "-l",
+    "--language",
+    default="ja",
+    help="Language.",
+    type=click.Choice(SUPPORTED_LANGUAGES, case_sensitive=True),
+)
+def build(language: str):
+    """Build document."""
+
+    subprocess.run(
+        [
+            "sphinx-build",
+            "-M",
+            "html",
+            "source",
+            f"build/{language}",
+            "-D",
+            f"language={language}",
+            "-D",
+            f"ogp_site_url=https://kicon.musicscience37.com/{language}/",
+        ],
+        check=True,
+        cwd=str(WEB_DIR),
+    )
+
+
+DEFAULT_PORTS = {
+    "ja": 2497,
+    "en": 2498,
+}
+
+
+@cli.command()
+@click.option(
+    "-l",
+    "--language",
+    default="ja",
+    help="Language.",
+    type=click.Choice(SUPPORTED_LANGUAGES, case_sensitive=True),
+)
+@click.option("-p", "--port", default=None, help="Port of the HTTP server.", type=int)
+def view(language: str, port: typing.Optional[int]):
+    """View HTML files."""
+
+    if port is None:
+        port = DEFAULT_PORTS[language]
+
+    subprocess.run(
+        ["python3", "-m", "http.server", str(port)],
+        check=False,
+        cwd=str(WEB_DIR / "build" / str(language) / "html"),
+    )
 
 
 if __name__ == "__main__":

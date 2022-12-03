@@ -2,6 +2,7 @@ image: ubuntu:jammy
 
 stages:
   - test
+  - build
   - deploy
 
 include:
@@ -12,13 +13,28 @@ dependency_scanning:
 license_scanning:
   needs: []
 
+build web:
+  stage: build
+  image: musicscience37/pipenv:jammy
+  needs: []
+  script:
+    - mkdir -p .venv
+    - pipenv sync
+    - pipenv run python3 ./tool.py build -l ja
+    - pipenv run python3 ./tool.py build -l en
+  artifacts:
+    paths:
+      - web/build
+
 pages:
   stage: deploy
   only:
     - main
-  needs: []
+  needs:
+    - build web
   script:
-    - mkdir public
+    - mv web/build/ja/html public/ja
+    - mv web/build/en/html public/en
     - mv outputs/* public/
     - cp public/KIcon.ico public/favicon.ico
   artifacts:
