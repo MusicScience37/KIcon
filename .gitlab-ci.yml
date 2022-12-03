@@ -20,6 +20,7 @@ pages:
   script:
     - mkdir public
     - mv outputs/* public/
+    - cp public/KIcon.ico public/favicon.ico
   artifacts:
     paths:
       - public
