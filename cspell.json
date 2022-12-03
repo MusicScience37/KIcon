@@ -3,7 +3,19 @@
   "ignorePaths": [],
   "dictionaryDefinitions": [],
   "dictionaries": [],
-  "words": ["Kabashima", "Kenta", "MusicScience37"],
+  "words": [
+    "autobuild",
+    "endfor",
+    "Kabashima",
+    "Kenta",
+    "maxdepth",
+    "MusicScience37",
+    "opengraph",
+    "pipenv",
+    "sphinxext",
+    "toctree",
+    "venv"
+  ],
   "ignoreWords": [],
   "import": []
 }
