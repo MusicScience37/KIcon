@@ -117,7 +117,36 @@ def convert():
 
 WEB_DIR = THIS_DIR / "web"
 
-SUPPORTED_LANGUAGES = ["ja"]
+SUPPORTED_LANGUAGES = ["ja", "en"]
+
+
+@cli.command()
+def update():
+    """Update translation files."""
+
+    subprocess.run(
+        [
+            "sphinx-build",
+            "-M",
+            "gettext",
+            "source",
+            "build",
+        ],
+        check=True,
+        cwd=str(WEB_DIR),
+    )
+    subprocess.run(
+        [
+            "sphinx-intl",
+            "update",
+            "-p",
+            "../build/gettext",
+            "-l",
+            "en",
+        ],
+        check=True,
+        cwd=str(WEB_DIR / "source"),
+    )
 
 
 @cli.command()

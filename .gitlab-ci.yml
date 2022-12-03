@@ -21,6 +21,7 @@ build web:
     - mkdir -p .venv
     - pipenv sync
     - pipenv run python3 ./tool.py build -l ja
+    - pipenv run python3 ./tool.py build -l en
   artifacts:
     paths:
       - web/build
@@ -33,6 +34,7 @@ pages:
     - build web
   script:
     - mv web/build/ja/html public/ja
+    - mv web/build/en/html public/en
     - mv outputs/* public/
     - cp public/KIcon.ico public/favicon.ico
   artifacts:
