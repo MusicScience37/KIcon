@@ -28,8 +28,8 @@ build web:
 
 pages:
   stage: deploy
-  #only:
-  #  - main
+  only:
+    - main
   needs:
     - build web
   script:
