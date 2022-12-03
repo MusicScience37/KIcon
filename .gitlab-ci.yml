@@ -1,17 +1,26 @@
-image: ubuntu:18.04
+image: ubuntu:jammy
 
 stages:
-  - build
+  - test
+  - deploy
 
-build:
-  stage: build
-  before_script:
-    - apt update
-    - apt install -y imagemagick
+include:
+  - template: Dependency-Scanning.gitlab-ci.yml
+  - template: Security/License-Scanning.gitlab-ci.yml
+dependency_scanning:
+  needs: []
+license_scanning:
+  needs: []
+
+pages:
+  stage: deploy
+  only:
+    - main
+  needs: []
   script:
-    - sh convert.sh
+    - mkdir public
+    - mv outputs/* public/
+    - cp public/KIcon.ico public/favicon.ico
   artifacts:
     paths:
-      - KIcon.ico
-      - KIcon.jpg
-      - PNG
+      - public
