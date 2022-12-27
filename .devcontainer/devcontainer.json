@@ -1,9 +1,6 @@
 {
   "build": { "dockerfile": "Dockerfile" },
-  "containerEnv": {
-    "PIPENV_VENV_IN_PROJECT": "1",
-    "PIPENV_IGNORE_VIRTUALENVS": "1"
-  },
+  "containerEnv": {},
   "extensions": [
     "streetsidesoftware.code-spell-checker",
     "davidanson.vscode-markdownlint",
@@ -11,7 +8,9 @@
     "ms-python.python",
     "ms-python.isort",
     "njpwerner.autodocstring",
-    "ms-azuretools.vscode-docker"
+    "ms-azuretools.vscode-docker",
+    "lextudio.restructuredtext",
+    "trond-snekvik.simple-rst"
   ],
   "postCreateCommand": "bash ./.devcontainer/setup.bash",
   "settings": {}

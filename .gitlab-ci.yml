@@ -19,9 +19,11 @@ build web:
   needs: []
   script:
     - mkdir -p .venv
-    - pipenv sync
-    - pipenv run python3 ./tool.py build -l ja
-    - pipenv run python3 ./tool.py build -l en
+    - poetry config virtualenvs.in-project true
+    - poetry env use 3.10
+    - poetry install
+    - poetry run python3 ./tool.py build -l ja
+    - poetry run python3 ./tool.py build -l en
   artifacts:
     paths:
       - web/build
