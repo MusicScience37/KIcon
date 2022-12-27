@@ -1,8 +1,8 @@
 #!/bin/bash
 
-pipenv sync --dev
+poetry install
 
-git config --global --add safe.directory /workspaces/kicon
+git config --global --add safe.directory $(pwd)
 
 git config gpg.program gpg2
 git config commit.gpgsign true
