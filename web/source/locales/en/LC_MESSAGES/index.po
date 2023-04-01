@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KIcon \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-03 18:22+0000\n"
+"POT-Creation-Date: 2023-04-01 07:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,13 +17,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.11.0\n"
 
-#: ../../source/index.rst:9
-msgid "About"
-msgstr ""
-
-#: ../../source/index.rst:15
-msgid "Images"
-msgstr ""
+#: ../../source/index.rst:14
+msgid "画像"
+msgstr "Images"
 
 #: ../../source/index.rst:2
 msgid "KIcon"
@@ -33,3 +29,10 @@ msgstr ""
 msgid "私のアイコンです。"
 msgstr "My Icon."
 
+#: ../../source/index.rst:10
+msgid "著作権表示"
+msgstr "Copyright"
+
+#: ../../source/index.rst:12
+msgid "Copyright 2023 MusicScience37 (Kenta Kabashima). All right reserved."
+msgstr ""

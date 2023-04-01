@@ -6,14 +6,13 @@ KIcon
 
 私のアイコンです。
 
-.. toctree::
-    :caption: About
-    :maxdepth: 1
+著作権表示
+--------------
 
-    license
+Copyright 2023 MusicScience37 (Kenta Kabashima). All right reserved.
 
 .. toctree::
-    :caption: Images
+    :caption: 画像
     :maxdepth: 1
 
     png
