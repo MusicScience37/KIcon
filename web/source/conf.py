@@ -65,7 +65,7 @@ html_static_path = []
 
 html_title = "MusicScience37"
 
-html_logo = "https://kicon.musicscience37.com/KIcon80white.png"
+html_logo = "https://kicon.musicscience37.com/KIcon80.png"
 html_favicon = "https://kicon.musicscience37.com/KIcon.ico"
 
 html_theme_options = {

@@ -60,12 +60,12 @@ def _convert_one_image(size: int, transparent: bool, suffix: str):
         "convert",
         "-density",
         str(IMAGE_DENSITY),
-        str("KIcon.svg"),
+        str("KIcon.png"),
         "-resize",
         f"{size}x{size}",
     ]
-    if transparent:
-        command = command + ["-transparent", "white"]
+    if not transparent:
+        command = command + ["-alpha", "remove", "-alpha", "off"]
     command = command + [str(output_filename)]
 
     _execute_command(command)
@@ -97,7 +97,7 @@ def _convert_icon():
     command = ["convert"]
     for size in ICON_SIZES:
         command = command + [f"KIcon{size}.png"]
-    command = command + ["-colors", "256", "KIcon.ico"]
+    command = command + ["KIcon.ico"]
 
     _execute_command(command)
 
