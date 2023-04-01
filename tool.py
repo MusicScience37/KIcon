@@ -60,12 +60,12 @@ def _convert_one_image(size: int, transparent: bool, suffix: str):
         "convert",
         "-density",
         str(IMAGE_DENSITY),
-        str("KIcon.svg"),
+        str("KIcon.png"),
         "-resize",
         f"{size}x{size}",
     ]
-    if transparent:
-        command = command + ["-transparent", "white"]
+    if not transparent:
+        command = command + ["-alpha", "remove", "-alpha", "off"]
     command = command + [str(output_filename)]
 
     _execute_command(command)
