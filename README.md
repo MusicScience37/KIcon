@@ -12,7 +12,6 @@ My icon.
 - [GitLab](https://gitlab.com/MusicScience37/kicon)
 - [GitHub](https://github.com/MusicScience37/KIcon) (Mirror)
 
-## License
+## Copyright
 
-This project is licensed under the
-[Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
+Copyright 2023 MusicScience37 (Kenta Kabashima). All right reserved.
