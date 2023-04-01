@@ -97,7 +97,7 @@ def _convert_icon():
     command = ["convert"]
     for size in ICON_SIZES:
         command = command + [f"KIcon{size}.png"]
-    command = command + ["-colors", "256", "KIcon.ico"]
+    command = command + ["KIcon.ico"]
 
     _execute_command(command)
 
