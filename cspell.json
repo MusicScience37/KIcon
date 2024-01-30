@@ -6,6 +6,7 @@
   "words": [
     "autobuild",
     "endfor",
+    "gruvbox",
     "Kabashima",
     "Kenta",
     "maxdepth",
@@ -14,6 +15,7 @@
     "MusicScience37",
     "opengraph",
     "pipenv",
+    "pygment",
     "sphinxext",
     "toctree",
     "venv"
