@@ -60,15 +60,21 @@ ogp_site_url = f"https://kicon.musicscience37.com/{language}/"
 ogp_site_name = "KIcon"
 ogp_image = "https://kicon.musicscience37.com/KIcon128white.png"
 
-html_theme = "sphinx_rtd_theme"
+html_theme = "sphinx_orange_book_theme"
 html_static_path = []
 
-html_title = "MusicScience37"
+html_title = "KIcon"
 
 html_logo = "https://kicon.musicscience37.com/KIcon80.png"
 html_favicon = "https://kicon.musicscience37.com/KIcon.ico"
 
 html_theme_options = {
-    "navigation_depth": -1,
-    "style_nav_header_background": "#B24700",
+    "show_prev_next": False,
+    "logo": {
+        "text": html_title,
+    },
+    "pygment_light_style": "gruvbox-light",
+    "pygment_dark_style": "native",
+    "repository_url": "https://gitlab.com/MusicScience37/kicon",
+    "use_repository_button": True,
 }
