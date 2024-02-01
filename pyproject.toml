@@ -10,7 +10,7 @@ packages = [{ include = "web/source" }]
 python = ">=3.11,<3.12"
 click = "^8.1.7"
 sphinx = "^7.2.6"
-sphinx-orange-book-theme = "^0.3.0"
+sphinx-orange-book-theme = "^0.5.0"
 sphinxext-opengraph = "^0.9.1"
 sphinx-jinja = "^2.0.2"
 
