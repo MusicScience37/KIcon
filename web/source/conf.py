@@ -61,7 +61,8 @@ ogp_site_name = "KIcon"
 ogp_image = "https://kicon.musicscience37.com/KIcon128white.png"
 
 html_theme = "sphinx_orange_book_theme"
-html_static_path = []
+html_static_path = ["_static"]
+html_css_files = ["kicon.css"]
 
 html_title = "KIcon"
 
