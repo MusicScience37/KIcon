@@ -1,5 +1,3 @@
-image: ubuntu:jammy
-
 stages:
   - test
   - build
@@ -11,7 +9,7 @@ include:
 
 build web:
   stage: build
-  image: musicscience37/pipenv:jammy
+  image: musicscience37/pipenv:noble
   needs: []
   script:
     - mkdir -p .venv
@@ -26,6 +24,7 @@ build web:
 
 pages:
   stage: deploy
+  image: alpine
   only:
     - main
   needs:
