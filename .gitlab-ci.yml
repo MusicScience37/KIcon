@@ -14,7 +14,7 @@ build web:
   script:
     - mkdir -p .venv
     - poetry config virtualenvs.in-project true
-    - poetry env use 3.11
+    - poetry env use 3.12
     - poetry install
     - poetry run python3 ./tool.py build -l ja
     - poetry run python3 ./tool.py build -l en

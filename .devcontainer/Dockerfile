@@ -13,6 +13,8 @@ RUN apt-get update && \
     vim nano \
     imagemagick \
     sudo \
+    # For configuration of locale
+    locales \
     && \
     apt-get autoremove -y && \
     apt-get autoclean && \
@@ -22,7 +24,12 @@ RUN apt-get update && \
     chmod 0440 /etc/sudoers.d/$USERNAME && \
     # Allow use of pyenv from $USERNAME user.
     chmod 0777 /root && \
-    chmod -R 0777 /root/.pyenv
+    chmod -R 0777 /root/.pyenv && \
+    # Configure locale
+    sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    update-locale LANG=en_US.UTF-8
+ENV LANG=en_US.UTF-8
 
 # Prepare poetry for $USERNAME user.
 USER $USERNAME
