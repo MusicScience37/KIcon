@@ -6,8 +6,6 @@
     "DL3013",
     "--no-color"
   ],
-  "restructuredtext.linter.disabledLinters": ["rstcheck", "rst-lint"],
-  "esbonio.server.enabled": false,
   "files.watcherExclude": {
     "**/.venv/**": true
   },
