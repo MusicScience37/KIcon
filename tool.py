@@ -50,8 +50,12 @@ def _execute_command(command: typing.List[str]):
     subprocess.run(command, cwd=OUTPUTS_DIR, check=True)
 
 
-def _convert_one_image(size: int, transparent: bool, suffix: str):
-    output_filename = f"KIcon{size}"
+def _convert_one_image(size: int, transparent: bool, is_dark: bool, suffix: str):
+    icon_type = ""
+    if is_dark:
+        icon_type = "-dark"
+
+    output_filename = f"KIcon{size}{icon_type}"
     if not transparent and suffix == "png":
         output_filename = output_filename + "white"
     output_filename = output_filename + "." + suffix
@@ -60,7 +64,7 @@ def _convert_one_image(size: int, transparent: bool, suffix: str):
         "convert",
         "-density",
         str(IMAGE_DENSITY),
-        str("KIcon.png"),
+        str(f"KIcon{icon_type}.png"),
         "-resize",
         f"{size}x{size}",
     ]
@@ -74,12 +78,17 @@ def _convert_one_image(size: int, transparent: bool, suffix: str):
 def _convert_png():
     suffix = "png"
     for transparent in [True, False]:
-        for size in IMAGE_SIZES:
-            _convert_one_image(
-                size=size,
-                transparent=transparent,
-                suffix=suffix,
-            )
+        for is_dark in [True, False]:
+            if not transparent and is_dark:
+                # 白背景のダークテーマのアイコンは見た目が良くないためスキップ
+                continue
+            for size in IMAGE_SIZES:
+                _convert_one_image(
+                    size=size,
+                    transparent=transparent,
+                    is_dark=is_dark,
+                    suffix=suffix,
+                )
 
 
 def _convert_jpg():
@@ -89,17 +98,19 @@ def _convert_jpg():
         _convert_one_image(
             size=size,
             transparent=transparent,
+            is_dark=False,
             suffix=suffix,
         )
 
 
 def _convert_icon():
-    command = ["convert"]
-    for size in ICON_SIZES:
-        command = command + [f"KIcon{size}.png"]
-    command = command + ["KIcon.ico"]
+    for icon_type in ["", "-dark"]:
+        command = ["convert"]
+        for size in ICON_SIZES:
+            command = command + [f"KIcon{size}{icon_type}.png"]
+        command = command + [f"KIcon{icon_type}.ico"]
 
-    _execute_command(command)
+        _execute_command(command)
 
 
 @cli.command()
