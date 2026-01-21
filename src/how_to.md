@@ -2,7 +2,7 @@
 
 ## アイコンの作り方
 
-1. `src/KIcon_making.svg` を編集
+1. `src/KIcon.svg` を編集
 2. 背景に元画像を表示しない設定にして保存したファイルを `outputs/KIcon.svg` に配置
 3. 1024 × 1024 のサイズで保存したファイルを `outputs/KIcon.png` に配置
 4. PDF 形式で保存した背景透明な PNG ファイルを `outputs/KIcon.pdf` に配置
@@ -12,3 +12,12 @@
 
 outputs ディレクトリの中身が https://kicon.musicscience37.com で公開されているため、
 その URL を指定する。
+
+## 色
+
+| 場所 | Light                       | Dark |
+| :--- | :-------------------------- | :--- |
+| 背景 | #f9efea (0.96, 0.013, 0.13) |      |
+| 前景 | #de6d2c (0.66, 0.16, 0.13)  |      |
+
+（かっこ内は Oklch の値）
