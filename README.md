@@ -2,11 +2,6 @@
 
 My icon.
 
-## Web page
-
-- [English](https://kicon.musicscience37.com/en/)
-- [日本語](https://kicon.musicscience37.com/ja/)
-
 ## Repositories
 
 - [GitLab](https://gitlab.com/MusicScience37/kicon)
