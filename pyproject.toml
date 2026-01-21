@@ -8,19 +8,12 @@ packages = [{ include = "web/source" }]
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.14"
-click = "^8.2.1"
-sphinx = "^8.2.3"
-sphinx-orange-book-theme = "^0.15.0"
-sphinxext-opengraph = "^0.10.0"
-sphinx-jinja = "^2.0.2"
-setuptools = "^80.9.0"
+click = "^8.3.1"
+setuptools = "^80.10.1"
 
 [tool.poetry.group.dev.dependencies]
-black = "^25.1.0"
-isort = "^6.0.1"
-doc8 = "^2.0.0"
-sphinx-autobuild = "^2024.10.3"
-sphinx-intl = "^2.3.1"
+black = "^26.1.0"
+isort = "^7.0.0"
 
 [build-system]
 requires = ["poetry-core"]
