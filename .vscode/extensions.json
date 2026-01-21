@@ -11,8 +11,6 @@
     "ms-python.isort",
     "njpwerner.autodocstring",
     "ms-azuretools.vscode-docker",
-    "lextudio.restructuredtext",
-    "trond-snekvik.simple-rst",
     "tamasfe.even-better-toml",
     "redhat.vscode-yaml",
     "ms-python.black-formatter"

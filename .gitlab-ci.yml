@@ -1,38 +1,18 @@
 stages:
   - test
-  - build
   - deploy
 
 include:
   - template: Jobs/Dependency-Scanning.gitlab-ci.yml
   - template: Jobs/Secret-Detection.gitlab-ci.yml
 
-build web:
-  stage: build
-  image: musicscience37/pipenv:noble
-  needs: []
-  script:
-    - mkdir -p .venv
-    - poetry config virtualenvs.in-project true
-    - poetry env use 3.13
-    - poetry install
-    - poetry run python3 ./tool.py build -l ja
-    - poetry run python3 ./tool.py build -l en
-  artifacts:
-    paths:
-      - web/build
-
 pages:
   stage: deploy
   image: alpine
   only:
     - main
-  needs:
-    - build web
   script:
-    - mv web/build/ja/html public/ja
-    - mv web/build/en/html public/en
-    - mv outputs/* public/
+    - mv outputs/ public/
     - cp public/KIcon.ico public/favicon.ico
   artifacts:
     paths:

@@ -7,3 +7,8 @@
 3. 1024 × 1024 のサイズで保存したファイルを `outputs/KIcon.png` に配置
 4. PDF 形式で保存した背景透明な PNG ファイルを `outputs/KIcon.pdf` に配置
 5. `./tool.py convert` コマンドを実行
+
+## アイコンの使い方
+
+outputs ディレクトリの中身が https://kicon.musicscience37.com で公開されているため、
+その URL を指定する。
