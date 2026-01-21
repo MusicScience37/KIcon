@@ -1,15 +1,16 @@
-[tool.poetry]
+[project]
 name = "kicon"
 version = "0.0.0"
 description = ""
-authors = ["Kenta Kabashima <kenta_program37@hotmail.co.jp>"]
 readme = "README.md"
-packages = [{ include = "web/source" }]
+authors = [
+    { name = "Kenta Kabashima", email = "kenta_program37@hotmail.co.jp" },
+]
+requires-python = ">=3.12,<3.14"
+dependencies = ["click >=8.3.1,<9.0", "setuptools >=80.10.1,<81.0"]
 
-[tool.poetry.dependencies]
-python = ">=3.12,<3.14"
-click = "^8.3.1"
-setuptools = "^80.10.1"
+[tool.poetry]
+package-mode = false
 
 [tool.poetry.group.dev.dependencies]
 black = "^26.1.0"
