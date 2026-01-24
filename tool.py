@@ -4,8 +4,9 @@
 import pathlib
 import subprocess
 import typing
-
+import shutil
 import click
+import os
 
 THIS_DIR = pathlib.Path(__file__).absolute().parent
 
@@ -119,6 +120,70 @@ def convert():
     _convert_png()
     _convert_jpg()
     _convert_icon()
+
+
+@cli.command()
+def auto():
+    """Start auto build server for documentation."""
+    html_dir_path = THIS_DIR / "web" / "build" / "html"
+    html_dir_path.mkdir(parents=True, exist_ok=True)
+
+    shutil.copy(
+        THIS_DIR / "outputs" / "KIcon.ico",
+        html_dir_path / "favicon.ico",
+    )
+
+    autobuild_env = os.environ.copy()
+    autobuild_env["PYDEVD_DISABLE_FILE_VALIDATION"] = "1"
+    try:
+        subprocess.run(
+            [
+                "poetry",
+                "run",
+                "sphinx-autobuild",
+                "source",
+                str(html_dir_path),
+                "--host",
+                "0",
+                "--port",
+                "7432",
+            ],
+            cwd=THIS_DIR / "web",
+            check=False,
+            env=autobuild_env,
+        )
+    except KeyboardInterrupt:
+        # This command is ordinarily terminated by Ctrl+C, so ignore the exception.
+        pass
+
+
+@cli.command()
+def build():
+    """Build Web page."""
+    html_dir_path = THIS_DIR / "web" / "build" / "html"
+    html_dir_path.mkdir(parents=True, exist_ok=True)
+
+    shutil.copy(
+        THIS_DIR / "outputs" / "KIcon.ico",
+        html_dir_path / "favicon.ico",
+    )
+
+    build_env = os.environ.copy()
+    build_env["PYDEVD_DISABLE_FILE_VALIDATION"] = "1"
+    subprocess.run(
+        [
+            "poetry",
+            "run",
+            "sphinx-build",
+            "-M",
+            "html",
+            "source",
+            "build",
+        ],
+        cwd=THIS_DIR / "web",
+        check=True,
+        env=build_env,
+    )
 
 
 if __name__ == "__main__":
