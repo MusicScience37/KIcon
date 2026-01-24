@@ -6,13 +6,40 @@ include:
   - template: Jobs/Dependency-Scanning.gitlab-ci.yml
   - template: Jobs/Secret-Detection.gitlab-ci.yml
 
+build web:
+  stage: test
+  needs: []
+  image: musicscience37/pipenv:noble
+  variables:
+    PYDEVD_DISABLE_FILE_VALIDATION: 1
+    POETRY_CACHE_DIR: ${CI_PROJECT_DIR}/.poetry-cache
+  script:
+    - poetry config virtualenvs.in-project true
+    - poetry env use 3.13
+    - poetry sync
+    - poetry run ./tool.py build
+  cache:
+    - key:
+        prefix: poetry
+        files:
+          - poetry.lock
+      paths:
+        - .poetry-cache
+  artifacts:
+    paths:
+      - web/build/html
+    expire_in: "1 week"
+
 pages:
   stage: deploy
+  needs:
+    - build web
   image: alpine
   only:
     - main
   script:
-    - mv outputs/ public/
+    - mv web/build/html/ public/
+    - mv outputs/* public/
     - cp public/KIcon.ico public/favicon.ico
   artifacts:
     paths:

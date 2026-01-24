@@ -157,5 +157,34 @@ def auto():
         pass
 
 
+@cli.command()
+def build():
+    """Build Web page."""
+    html_dir_path = THIS_DIR / "web" / "build" / "html"
+    html_dir_path.mkdir(parents=True, exist_ok=True)
+
+    shutil.copy(
+        THIS_DIR / "outputs" / "KIcon.ico",
+        html_dir_path / "favicon.ico",
+    )
+
+    build_env = os.environ.copy()
+    build_env["PYDEVD_DISABLE_FILE_VALIDATION"] = "1"
+    subprocess.run(
+        [
+            "poetry",
+            "run",
+            "sphinx-build",
+            "-M",
+            "html",
+            "source",
+            "build",
+        ],
+        cwd=THIS_DIR / "web",
+        check=True,
+        env=build_env,
+    )
+
+
 if __name__ == "__main__":
     cli()
